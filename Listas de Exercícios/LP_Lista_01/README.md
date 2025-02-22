@@ -84,14 +84,11 @@ Para mais informações acesse [Aula 01: Fluxogramas.](https://www.notion.so/cai
    flowchart TD
       start((inicio))-->input1[\digite N1\]
       input1-->input2[\digite N2\]
-      input2-->Resultado{identificar N1>N2}
+      input2-->Resultado{identificar N1>=N2}
       Resultado-->|sim|A[/N1/]
       Resultado-->|não|B[/N2/]
-      Resultado-->|iguais|C[/iguais/]
       A-->finish(Fim)
       B-->finish
-      C-->finish
-   
    ```
    
 7. Crie um fluxograma que leia três números e determine o maior entre eles.
@@ -101,18 +98,34 @@ Para mais informações acesse [Aula 01: Fluxogramas.](https://www.notion.so/cai
       start((inicio))-->input1[\digita N1\]
       input1-->input2[\digite N2\]
       input2-->input3[\digite N3\]
-      input3-->Resultado1{identificar N1>N2}
-      Resultado1-->|sim|A[/N1/]
-      Resultado1-->|não|B[/N2/]
-      Resultado1-->|iguais|C[/iguais/]
-      A-->{Resultado<N3}
+      input3-->Resultado1{N1>N2}
+      Resultado1-->|sim|A{N1>N3}
+      Resultado1-->|não|B{N2>N3}
+      A-->|sim|C[/N1 é o maior/]
+      A-->|não|D
+      B-->|não|D{N3==N1 OR N3==N2}
+      B-->|sim|J[/N2 é maior/]
+      D-->|sim|H[/Você digitou \n alguns números \n iguais/]
+      D-->|não|I[/N3 é o maior/]
+      C-->finish(fim)
+      H-->finish
+      I-->finish
+      J-->finish
    ```
    
 8. Construa um fluxograma para calcular o fatorial de um número fornecido pelo usuário.
    
    ```mermaid
    flowchart TD
-      G["Sua resposta aqui!"]
+      start((inicio))-->input[\Digite um número\]
+      input-->a[r=1]
+      a-->b{n>1?}
+      b-->|sim|c[r=r*n]
+      c-->d[n=n-1]
+      d-->b
+      b-->|não|e[/resposta = r/]
+      e-->finish(final)
+   
    ```
    
 9. Elabore um fluxograma para verificar se um número digitado pelo usuário é par.
@@ -125,7 +138,12 @@ Para mais informações acesse [Aula 01: Fluxogramas.](https://www.notion.so/cai
    
    ```mermaid
    flowchart TD
-      H["Sua resposta aqui!"]
+      start((inicio))-->B[\digite um número\]
+      B-->C{N%2==0?}
+      C-->|sim|d[/par/]
+      C-->|não|e[/impar/]
+      d-->finish(fim)
+      e-->finish
    ```
    
 10. Elabore um fluxograma para verificar se um número digitado pelo usuário é primo.
